@@ -1,10 +1,10 @@
 import React from 'react';
 import Slider from 'rc-slider';
 
-class ThrottleSlider extends React.Component {
+class RightSlider extends React.Component {
   render() {
     return (
-      <div className="rc-slider-throttle">
+      <div className="rc-slider-right">
         <Slider
           min={0}
           max={100}
@@ -17,4 +17,4 @@ class ThrottleSlider extends React.Component {
   }
 }
 
-export default ThrottleSlider;
+export default RightSlider;

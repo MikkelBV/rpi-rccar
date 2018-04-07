@@ -1,10 +1,10 @@
 import React from 'react';
 import Slider from 'rc-slider';
 
-class SteeringSlider extends React.Component {
+class LeftSlider extends React.Component {
   render() {
     return (
-      <div className="rc-slider-steering">
+      <div className="rc-slider-left">
         <Slider
           min={0}
           max={100}
@@ -17,4 +17,4 @@ class SteeringSlider extends React.Component {
   }
 }
 
-export default SteeringSlider;
+export default LeftSlider;

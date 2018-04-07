@@ -1,6 +1,6 @@
 import React from 'react';
-import RightSlider from './ThrottleSlider';
-import LeftSlider from './SteeringSlider';
+import RightSlider from './RightSlider';
+import LeftSlider from './LeftSlider';
 import MasterSlider from './MasterSlider';
 
 class App extends React.Component {
@@ -13,11 +13,11 @@ class App extends React.Component {
     }
   }
   componentDidMount = () => {
-    this.socket = new WebSocket("ws://localhost:8000")
+    this.socket = new WebSocket(`ws://${window.location.hostname}:8000`);
   }
   sendDataToServer = () => {
     const { left, right } = this.state;
-    const datastr = `L${left}:R${right}`;
+    const datastr = `${left}:${right}`;
     this.socket.send(datastr);
   }
   onRightChange = (right) => {

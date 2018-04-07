@@ -1,17 +1,17 @@
 from websocketserver import SimpleWebSocketServer, WebSocket
 
-class SimpleEcho(WebSocket):
 
+def print_to_pi(left, right):
+    print('left: ' + left + ', right: ' + right)
+
+
+class SimpleEcho(WebSocket):
     def handleMessage(self):
         # echo message back to client
-        print(self.data)
-        #self.sendMessage(self.data)
+        data = str(self.data)
+        (left, right) = data.split(':')
+        print_to_pi(left, right)
 
-    def handleConnected(self):
-        print(self.address, 'connected')
-
-    def handleClose(self):
-        print(self.address, 'closed')
 
 if __name__ == '__main__':
     server = SimpleWebSocketServer('', 8000, SimpleEcho)

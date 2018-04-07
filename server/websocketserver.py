@@ -3,6 +3,7 @@ The MIT License (MIT)
 Copyright (c) 2013 Dave P. https://github.com/dpallot/simple-websocket-server 
 
 '''
+
 import sys
 VER = sys.version_info[0]
 if VER >= 3:
@@ -40,6 +41,7 @@ class HTTPRequest(BaseHTTPRequestHandler):
             self.rfile = BytesIO(request_text)
         else:
             self.rfile = StringIO(request_text)
+
         self.raw_requestline = self.rfile.readline()
         self.error_code = self.error_message = None
         self.parse_request()
@@ -74,7 +76,6 @@ MAXHEADER = 65536
 MAXPAYLOAD = 33554432
 
 class WebSocket(object):
-
     def __init__(self, server, sock, address):
         self.server = server
         self.client = sock
@@ -108,6 +109,7 @@ class WebSocket(object):
         self.maxheader = MAXHEADER
         self.maxpayload = MAXPAYLOAD
 
+
     def handleMessage(self):
         """
             Called when websocket frame is received.
@@ -117,17 +119,20 @@ class WebSocket(object):
         """
         pass
 
+
     def handleConnected(self):
         """
             Called when a websocket client connects to the server.
         """
         pass
 
+
     def handleClose(self):
         """
             Called when a websocket server gets a Close frame from a client.
         """
         pass
+
 
     def _handlePacket(self):
         if self.opcode == CLOSE:
@@ -241,8 +246,8 @@ class WebSocket(object):
     def _handleData(self):
         # do the HTTP header and handshake
         if self.handshaked is False:
-
             data = self.client.recv(self.headertoread)
+
             if not data:
                 raise Exception('remote socket closed')
 
@@ -293,6 +298,7 @@ class WebSocket(object):
             if self.closed is False:
                 close_msg = bytearray()
                 close_msg.extend(struct.pack("!H", status))
+
                 if _check_unicode(reason):
                     close_msg.extend(reason.encode('utf-8'))
                 else:
@@ -341,6 +347,7 @@ class WebSocket(object):
         opcode = BINARY
         if _check_unicode(data):
             opcode = TEXT
+
         self._sendMessage(True, opcode, data)
 
     def sendFragment(self, data):
@@ -368,6 +375,7 @@ class WebSocket(object):
         opcode = BINARY
         if _check_unicode(data):
             opcode = TEXT
+
         self._sendMessage(False, opcode, data)
 
 
@@ -577,11 +585,14 @@ class SimpleWebSocketServer(object):
         self.connections = {}
         self.listeners = [self.serversocket]
 
+
     def _decorateSocket(self, sock):
         return sock
 
+
     def _constructWebSocket(self, sock, address):
         return self.websocketclass(self, sock, address)
+
 
     def close(self):
         self.serversocket.close()
@@ -589,6 +600,7 @@ class SimpleWebSocketServer(object):
         for desc, conn in self.connections.items():
             conn.close()
             self._handleClose(conn)
+
 
     def _handleClose(self, client):
         client.client.close()
@@ -598,6 +610,7 @@ class SimpleWebSocketServer(object):
                 client.handleClose()
             except:
                 pass
+
 
     def serveonce(self):
         writers = []
@@ -666,9 +679,11 @@ class SimpleWebSocketServer(object):
                 del self.connections[failed]
                 self.listeners.remove(failed)
 
+
     def serveforever(self):
         while True:
             self.serveonce()
+
 
 class SimpleSSLWebSocketServer (SimpleWebSocketServer):
     def __init__(self, host, port, websocketclass, certfile,
@@ -680,17 +695,21 @@ class SimpleSSLWebSocketServer (SimpleWebSocketServer):
         self.context = ssl.SSLContext(version)
         self.context.load_cert_chain(certfile, keyfile)
 
+
     def close(self):
         super(SimpleSSLWebSocketServer, self).close()
+
 
     def _decorateSocket(self, sock):
         sslsock = self.context.wrap_socket(sock, server_side=True)
         return sslsock
 
+
     def _constructWebSocket(self, sock, address):
         ws = self.websocketclass(self, sock, address)
         ws.usingssl = True
         return ws
+
 
     def serveforever(self):
         uper(SimpleSSLWebSocketServer, self).serveforever()

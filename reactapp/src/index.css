@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.rc-slider-throttle {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+  height: 80%;
+}
+.rc-slider-steering {
+  position: absolute;
+  left: 30px;
+  bottom: 20px;
+  height: 80%;
+}
+.rc-slider-master {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  height: 80%;
+}
+.rc-slider-handle {
+  width: 30px;
+  height: 30px;
+}
+.rc-slider-rail {
+  width: 20px;
+}
+.rc-slider-track {
+  width: 20px;
+}
+.rc-slider-vertical .rc-slider-rail {
+  width: 20px;
+}
+.rc-slider-vertical .rc-slider-track {
+  width: 20px;
+}

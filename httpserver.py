@@ -29,10 +29,11 @@ def run(port = 8081):
     print('Car HTTP server ready on port ' + port)
     server.serve_forever()
 
+
 if __name__ == "__main__":
     from sys import argv
 
     if len(argv) == 2:
-        run(port=int(argv[1]))
+        run(port = int(argv[1]))
     else:
         run()

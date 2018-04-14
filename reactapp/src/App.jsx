@@ -12,20 +12,25 @@ class App extends React.Component {
       master: 0,
     }
   }
+
   componentDidMount = () => {
     this.socket = new WebSocket(`ws://${window.location.hostname}:8000`);
   }
+
   sendDataToServer = () => {
     const { left, right } = this.state;
     const datastr = `${255 - left}:${255 - right}`;
     this.socket.send(datastr);
   }
+
   onRightChange = (right) => {
     this.setState({ right }, this.sendDataToServer);
   }
+
   onLeftChange = (left) => {
     this.setState({ left }, this.sendDataToServer);
   }
+
   onMasterChange = (value) => {
     this.setState({ 
       left: value,
@@ -33,14 +38,17 @@ class App extends React.Component {
       master: value,
     }, this.sendDataToServer);
   }
+
   handleDrive = () => {
     const url = `http://${window.location.hostname}:8081/drive`;
     fetch(url).catch((error) => console.error(error));
   }
+
   handleReverse = () => {
     const url = `http://${window.location.hostname}:8081/reverse`;
     fetch(url).catch((error) => console.error(error));
   }
+
   render() {
     return (
       <div className="app">

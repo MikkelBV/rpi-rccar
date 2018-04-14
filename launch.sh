@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Starting car..."
 
 echo "Launching client HTTP server"

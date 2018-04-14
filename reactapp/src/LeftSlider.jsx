@@ -7,7 +7,7 @@ class LeftSlider extends React.Component {
       <div className="rc-slider-left">
         <Slider
           min={0}
-          max={100}
+          max={255}
           vertical
           onChange={this.props.onChange}
           value={this.props.value}

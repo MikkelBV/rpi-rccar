@@ -7,7 +7,7 @@ class MasterSlider extends React.Component {
       <div className="rc-slider-master">
         <Slider
           min={0}
-          max={100}
+          max={255}
           vertical 
           onChange={this.props.onChange}
           value={this.props.master}

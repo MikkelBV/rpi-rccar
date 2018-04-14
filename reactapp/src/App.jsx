@@ -17,7 +17,7 @@ class App extends React.Component {
   }
   sendDataToServer = () => {
     const { left, right } = this.state;
-    const datastr = `${left}:${right}`;
+    const datastr = `${255 - left}:${255 - right}`;
     this.socket.send(datastr);
   }
   onRightChange = (right) => {

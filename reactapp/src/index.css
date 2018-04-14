@@ -18,7 +18,7 @@ body {
 }
 .rc-slider-master {
   position: absolute;
-  left: 50%;
+  right: 80px; 
   bottom: 20px;
   height: 80%;
 }
@@ -37,4 +37,22 @@ body {
 }
 .rc-slider-vertical .rc-slider-track {
   width: 20px;
+}
+
+button {
+  font-size: 30px;
+  padding: 20px 10px;
+  background-color: #96dbfa;
+  border: 0;
+  border-radius: 5px;
+  user-select: none;
+}
+button:active {
+  border: 1px solid black;
+}
+.gear-selector {
+  position: absolute;
+  left: 80px;
+  bottom: 20px;
+  height: 80%;
 }

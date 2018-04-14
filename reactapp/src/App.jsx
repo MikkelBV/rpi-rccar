@@ -33,6 +33,14 @@ class App extends React.Component {
       master: value,
     }, this.sendDataToServer);
   }
+  handleDrive = () => {
+    const url = `http://${window.location.hostname}:8081/drive`;
+    fetch(url).catch((error) => console.error(error));
+  }
+  handleReverse = () => {
+    const url = `http://${window.location.hostname}:8081/reverse`;
+    fetch(url).catch((error) => console.error(error));
+  }
   render() {
     return (
       <div className="app">
@@ -40,13 +48,18 @@ class App extends React.Component {
           value={this.state.left}
           onChange={this.onLeftChange}
         />
-        <RightSlider
-          value={this.state.right}
-          onChange={this.onRightChange}
-        />
+        <div className="gear-selector">
+          <button onClick={this.handleDrive}>&#8613;</button>
+          <br />
+          <button onClick={this.handleReverse}>&#8615;</button>
+        </div>
         <MasterSlider
           master={this.state.master}
           onChange={this.onMasterChange}
+        />
+        <RightSlider
+          value={this.state.right}
+          onChange={this.onRightChange}
         />
       </div>
     );

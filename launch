@@ -1,7 +1,7 @@
 echo "Starting car..."
 
 echo "Launching HTTP server"
-cd build
+cd client
 python3 -m http.server 8080 &
 
 echo "Launching socket server"

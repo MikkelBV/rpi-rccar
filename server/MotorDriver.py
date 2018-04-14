@@ -29,6 +29,10 @@ class MotorDriver:
         bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.MOTOR_SPEED_SET, [MotorSpeedA, MotorSpeedB])
         time.sleep(.02)
 
-    def motor_direction_set(self, direction):
-        bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.DIRECTION_SET, [direction, 0])
+    def motor_drive(self):
+        bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.DIRECTION_SET, [0b1010, 0])
+        time.sleep(.02)
+
+    def motor_reverse(self):
+        bus.write_i2c_block_data(self.I2CMotorDriverAdd, self.DIRECTION_SET, [0b0101, 0])
         time.sleep(.02)

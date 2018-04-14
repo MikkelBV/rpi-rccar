@@ -6,7 +6,7 @@ motor = MotorDriver()
 class Socket (WebSocket):
     def handleConnected(self):
         print('device connected')
-        motor.motor_direction_set(0b1010)
+        motor.motor_drive()
 
     def handleMessage(self):
         # echo message back to client
@@ -16,5 +16,7 @@ class Socket (WebSocket):
 
 
 if __name__ == '__main__':
-    server = SimpleWebSocketServer('', 8000, Socket)
+    port = 8000
+    server = SimpleWebSocketServer('', port, Socket)
+    print('Socket server ready on port ' + port)
     server.serveforever()

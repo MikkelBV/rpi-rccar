@@ -17,7 +17,7 @@ class Socket (WebSocket):
 
 def run(port = 8000):
     server = SimpleWebSocketServer('', port, Socket)
-    print('Socket server ready on port ' + port)
+    print('Socket server ready on port ' + str(port))
     server.serveforever()
 
 

@@ -26,7 +26,7 @@ class Server (BaseHTTPRequestHandler):
 def run(port = 8081):
     server_address = ('', port)
     server = HTTPServer(server_address, Server)
-    print('Car HTTP server ready on port ' + port)
+    print('Car HTTP server ready on port ' + str(port))
     server.serve_forever()
 
 
